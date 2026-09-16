@@ -1,0 +1,20 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ORF Wear API",
+    "version": "1.0.0",
+    "description": "Contract placeholder. Regenerate with `make openapi` after the API boots."
+  },
+  "paths": {
+    "/api/v1/catalog/products": {
+      "get": {
+        "summary": "List products",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

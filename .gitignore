@@ -1,0 +1,69 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node / Next.js
+node_modules/
+.pnpm-store/
+apps/web/.next/
+apps/web/out/
+apps/web/coverage/
+apps/web/.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+apps/api/.venv/
+apps/api/**/__pycache__/
+apps/api/media/
+apps/api/staticfiles/
+apps/api/.pytest_cache/
+apps/api/.mypy_cache/
+apps/api/.ruff_cache/
+apps/api/htmlcov/
+apps/api/.coverage
+*.sqlite3
+
+# Docker
+docker-data/
+
+# Generated clients (regenerate from OpenAPI)
+packages/contracts/typescript/generated/
+
+# Misc
+*.pem
+.cache/
+.temp/
+tmp/
