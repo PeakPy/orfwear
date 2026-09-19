@@ -1,28 +1,10 @@
-from __future__ import annotations
+from apps.common.models.base import SoftDeleteModel, TimeStampedModel, UUIDPrimaryKeyModel
+from apps.common.models.settings import ContentPage, StoreSetting
 
-import uuid
-
-from django.db import models
-
-
-class TimeStampedModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
-
-
-class UUIDPrimaryKeyModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
-    class Meta:
-        abstract = True
-
-
-class SoftDeleteModel(models.Model):
-    is_deleted = models.BooleanField(default=False, db_index=True)
-    deleted_at = models.DateTimeField(null=True, blank=True)
-
-    class Meta:
-        abstract = True
+__all__ = [
+    "TimeStampedModel",
+    "UUIDPrimaryKeyModel",
+    "SoftDeleteModel",
+    "StoreSetting",
+    "ContentPage",
+]

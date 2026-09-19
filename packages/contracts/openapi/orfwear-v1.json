@@ -3,18 +3,6090 @@
   "info": {
     "title": "ORF Wear API",
     "version": "1.0.0",
-    "description": "Contract placeholder. Regenerate with `make openapi` after the API boots."
+    "description": ""
   },
   "paths": {
+    "/api/v1/users/auth/otp/request": {
+      "post": {
+        "operationId": "apps_users_api_router_otp_request",
+        "summary": "Otp Request",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpRequestOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpRequestIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/users/auth/otp/verify": {
+      "post": {
+        "operationId": "apps_users_api_router_otp_verify",
+        "summary": "Otp Verify",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpVerifyOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpVerifyIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "operationId": "apps_users_api_router_me",
+        "summary": "Me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "apps_users_api_router_patch_me",
+        "summary": "Patch Me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMeIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/users/addresses": {
+      "get": {
+        "operationId": "apps_users_api_router_addresses_list",
+        "summary": "Addresses List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AddressOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_users_api_router_address_create",
+        "summary": "Address Create",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/users/addresses/{address_id}": {
+      "patch": {
+        "operationId": "apps_users_api_router_address_update",
+        "summary": "Address Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address_id",
+            "schema": {
+              "title": "Address Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressPatchIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "apps_users_api_router_address_delete",
+        "summary": "Address Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address_id",
+            "schema": {
+              "title": "Address Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/users/wishlist": {
+      "get": {
+        "operationId": "apps_users_api_router_wishlist_list",
+        "summary": "Wishlist List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProductListItem"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_users_api_router_wishlist_add",
+        "summary": "Wishlist Add",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProductListItem"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WishlistAddIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/users/wishlist/{product_id}": {
+      "delete": {
+        "operationId": "apps_users_api_router_wishlist_remove",
+        "summary": "Wishlist Remove",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "schema": {
+              "title": "Product Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProductListItem"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "CustomerBearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/catalog/products": {
       "get": {
-        "summary": "List products",
+        "operationId": "apps_catalog_api_router_products_list",
+        "summary": "Products List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "collection",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Collection"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "audience",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Audience"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sizes",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sizes"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "colors",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Colors"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "min_price",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Price"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "max_price",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Price"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "in_stock",
+            "schema": {
+              "default": false,
+              "title": "In Stock",
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sort"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "title": "Page",
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "default": 12,
+              "title": "Page Size",
+              "type": "integer"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPage"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/api/v1/catalog/facets": {
+      "get": {
+        "operationId": "apps_catalog_api_router_catalog_facets",
+        "summary": "Catalog Facets",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "collection",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Collection"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogFacets"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/api/v1/catalog/categories": {
+      "get": {
+        "operationId": "apps_catalog_api_router_categories_list",
+        "summary": "Categories List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/api/v1/catalog/products/{slug}": {
+      "get": {
+        "operationId": "apps_catalog_api_router_product_detail",
+        "summary": "Product Detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "title": "Slug",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/api/v1/catalog/collections": {
+      "get": {
+        "operationId": "apps_catalog_api_router_collections_list",
+        "summary": "Collections List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CollectionListItem"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/api/v1/catalog/collections/{slug}": {
+      "get": {
+        "operationId": "apps_catalog_api_router_collection_detail",
+        "summary": "Collection Detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "title": "Slug",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/api/v1/cart/current": {
+      "get": {
+        "operationId": "apps_cart_api_router_current_cart",
+        "summary": "Current Cart",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Cart-Key",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Cart-Key"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ]
+      }
+    },
+    "/api/v1/cart/lines": {
+      "post": {
+        "operationId": "apps_cart_api_router_add_cart_line",
+        "summary": "Add Cart Line",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Cart-Key",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Cart-Key"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCartLineIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/cart/lines/{line_id}": {
+      "patch": {
+        "operationId": "apps_cart_api_router_patch_cart_line",
+        "summary": "Patch Cart Line",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "line_id",
+            "schema": {
+              "title": "Line Id",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Cart-Key",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Cart-Key"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCartLineIn"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "operationId": "apps_cart_api_router_delete_cart_line",
+        "summary": "Delete Cart Line",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "line_id",
+            "schema": {
+              "title": "Line Id",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Cart-Key",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Cart-Key"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ]
+      }
+    },
+    "/api/v1/orders/": {
+      "get": {
+        "operationId": "apps_orders_api_router_orders_list",
+        "summary": "Orders List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/OrderOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/api/v1/orders/checkout": {
+      "post": {
+        "operationId": "apps_orders_api_router_checkout",
+        "summary": "Checkout",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/orders/{order_id}": {
+      "get": {
+        "operationId": "apps_orders_api_router_order_detail",
+        "summary": "Order Detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "order_id",
+            "schema": {
+              "title": "Order Id",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "token",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Token"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/api/v1/orders/{order_id}/cancel": {
+      "post": {
+        "operationId": "apps_orders_api_router_order_cancel",
+        "summary": "Order Cancel",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "order_id",
+            "schema": {
+              "title": "Order Id",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "token",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Token"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/api/v1/payments/intents/{intent_id}": {
+      "get": {
+        "operationId": "apps_payments_api_router_payment_intent_detail",
+        "summary": "Payment Intent Detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "intent_id",
+            "schema": {
+              "title": "Intent Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/api/v1/payments/intents/{intent_id}/sandbox-complete": {
+      "post": {
+        "operationId": "apps_payments_api_router_sandbox_complete",
+        "summary": "Sandbox Complete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "intent_id",
+            "schema": {
+              "title": "Intent Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            }
+          }
+        },
+        "description": "Development-only settlement hook; rejected unless the active provider opts in.",
+        "tags": [
+          "payments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SandboxCompleteIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/payments/callback": {
+      "post": {
+        "operationId": "apps_payments_api_router_provider_callback",
+        "summary": "Provider Callback",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/api/v1/shipping/methods": {
+      "get": {
+        "operationId": "apps_shipping_api_router_shipping_methods",
+        "summary": "Shipping Methods",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ShippingMethodOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "shipping"
+        ]
+      }
+    },
+    "/api/v1/marketing/heroes": {
+      "get": {
+        "operationId": "apps_marketing_api_router_list_heroes",
+        "summary": "List Heroes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/HeroBannerOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketing"
+        ]
+      }
+    },
+    "/api/v1/admin/auth/login": {
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_login",
+        "summary": "Admin Login",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffLoginOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffLoginIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/admin/auth/me": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_me",
+        "summary": "Admin Me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffUserOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/dashboard/stats": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_dashboard_stats",
+        "summary": "Dashboard Stats",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardStatsOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/settings": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_settings_get",
+        "summary": "Settings Get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreSettingsOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "apps_common_api_admin_router_settings_update",
+        "summary": "Settings Update",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreSettingsOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreSettingsIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/content/pages": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_content_pages_list",
+        "summary": "Content Pages List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ContentPageOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/content/pages/{page_id}": {
+      "patch": {
+        "operationId": "apps_common_api_admin_router_content_pages_update",
+        "summary": "Content Pages Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "page_id",
+            "schema": {
+              "title": "Page Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentPageOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContentPageUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/products": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_products_list",
+        "summary": "Admin Products List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminProductListItem"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_products_create",
+        "summary": "Admin Products Create",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProductDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminProductCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/products/{product_id}": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_products_detail",
+        "summary": "Admin Products Detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "schema": {
+              "title": "Product Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProductDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_products_update",
+        "summary": "Admin Products Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "schema": {
+              "title": "Product Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProductDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminProductUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/products/{product_id}/variants": {
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_variants_create",
+        "summary": "Admin Variants Create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "schema": {
+              "title": "Product Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminVariantOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminVariantIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/products/{product_id}/variants/{variant_id}": {
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_variants_update",
+        "summary": "Admin Variants Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "schema": {
+              "title": "Product Id",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "variant_id",
+            "schema": {
+              "title": "Variant Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminVariantOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminVariantUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "apps_common_api_admin_router_admin_variants_delete",
+        "summary": "Admin Variants Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "product_id",
+            "schema": {
+              "title": "Product Id",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "variant_id",
+            "schema": {
+              "title": "Variant Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/categories": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_categories_list",
+        "summary": "Admin Categories List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminCategoryOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_categories_create",
+        "summary": "Admin Categories Create",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminCategoryOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminCategoryIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/categories/{category_id}": {
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_categories_update",
+        "summary": "Admin Categories Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "category_id",
+            "schema": {
+              "title": "Category Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminCategoryOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminCategoryIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "apps_common_api_admin_router_admin_categories_delete",
+        "summary": "Admin Categories Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "category_id",
+            "schema": {
+              "title": "Category Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/collections": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_collections_list",
+        "summary": "Admin Collections List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminCollectionOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_collections_create",
+        "summary": "Admin Collections Create",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminCollectionOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminCollectionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/catalog/collections/{collection_id}": {
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_collections_update",
+        "summary": "Admin Collections Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collection_id",
+            "schema": {
+              "title": "Collection Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminCollectionOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminCollectionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "apps_common_api_admin_router_admin_collections_delete",
+        "summary": "Admin Collections Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collection_id",
+            "schema": {
+              "title": "Collection Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/inventory": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_inventory_list",
+        "summary": "Admin Inventory List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "low_only",
+            "schema": {
+              "default": false,
+              "title": "Low Only",
+              "type": "boolean"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminStockItemOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/inventory/{variant_id}/adjust": {
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_inventory_adjust",
+        "summary": "Admin Inventory Adjust",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "variant_id",
+            "schema": {
+              "title": "Variant Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminStockItemOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminStockAdjustIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/orders": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_orders_list",
+        "summary": "Admin Orders List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminOrderListItem"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/orders/{order_id}": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_orders_detail",
+        "summary": "Admin Orders Detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "order_id",
+            "schema": {
+              "title": "Order Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminOrderDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_orders_update",
+        "summary": "Admin Orders Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "order_id",
+            "schema": {
+              "title": "Order Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminOrderDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminOrderStatusIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/payments": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_payments_list",
+        "summary": "Admin Payments List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminPaymentOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/customers": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_customers_list",
+        "summary": "Admin Customers List",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminCustomerOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/marketing/banners": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_banners_list",
+        "summary": "Admin Banners List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminBannerOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_banners_create",
+        "summary": "Admin Banners Create",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminBannerOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminBannerIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/marketing/banners/{banner_id}": {
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_banners_update",
+        "summary": "Admin Banners Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "banner_id",
+            "schema": {
+              "title": "Banner Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminBannerOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminBannerUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "apps_common_api_admin_router_admin_banners_delete",
+        "summary": "Admin Banners Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "banner_id",
+            "schema": {
+              "title": "Banner Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/shipping/methods": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_shipping_list",
+        "summary": "Admin Shipping List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminShippingMethodOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_shipping_create",
+        "summary": "Admin Shipping Create",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminShippingMethodOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminShippingMethodIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/shipping/methods/{method_id}": {
+      "patch": {
+        "operationId": "apps_common_api_admin_router_admin_shipping_update",
+        "summary": "Admin Shipping Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "method_id",
+            "schema": {
+              "title": "Method Id",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminShippingMethodOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminShippingMethodUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/media": {
+      "get": {
+        "operationId": "apps_common_api_admin_router_admin_media_list",
+        "summary": "Admin Media List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminMediaOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/media/upload": {
+      "post": {
+        "operationId": "apps_common_api_admin_router_admin_media_upload",
+        "summary": "Admin Media Upload",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminMediaOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminMediaUploadIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "StaffBearer": []
+          }
+        ]
       }
     }
-  }
+  },
+  "components": {
+    "schemas": {
+      "OtpRequestOut": {
+        "properties": {
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "expires_in": {
+            "default": 0,
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "retry_after": {
+            "default": 0,
+            "title": "Retry After",
+            "type": "integer"
+          },
+          "debug_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Debug Code"
+          }
+        },
+        "required": [
+          "ok",
+          "message"
+        ],
+        "title": "OtpRequestOut",
+        "type": "object"
+      },
+      "OtpRequestIn": {
+        "properties": {
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone"
+        ],
+        "title": "OtpRequestIn",
+        "type": "object"
+      },
+      "MeOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "phone": {
+            "default": "",
+            "title": "Phone",
+            "type": "string"
+          },
+          "first_name": {
+            "default": "",
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "default": "",
+            "title": "Last Name",
+            "type": "string"
+          },
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "username"
+        ],
+        "title": "MeOut",
+        "type": "object"
+      },
+      "OtpVerifyOut": {
+        "properties": {
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "token_type": {
+            "default": "Bearer",
+            "title": "Token Type",
+            "type": "string"
+          },
+          "expires_in": {
+            "default": 0,
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "user": {
+            "$ref": "#/components/schemas/MeOut"
+          }
+        },
+        "required": [
+          "ok",
+          "message",
+          "access_token",
+          "user"
+        ],
+        "title": "OtpVerifyOut",
+        "type": "object"
+      },
+      "OtpVerifyIn": {
+        "properties": {
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone",
+          "code"
+        ],
+        "title": "OtpVerifyIn",
+        "type": "object"
+      },
+      "UpdateMeIn": {
+        "properties": {
+          "first_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Name"
+          },
+          "last_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Name"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          }
+        },
+        "title": "UpdateMeIn",
+        "type": "object"
+      },
+      "AddressOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "full_name": {
+            "title": "Full Name",
+            "type": "string"
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "province": {
+            "title": "Province",
+            "type": "string"
+          },
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "address_line": {
+            "title": "Address Line",
+            "type": "string"
+          },
+          "postal_code": {
+            "title": "Postal Code",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "is_default": {
+            "title": "Is Default",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "full_name",
+          "phone",
+          "province",
+          "city",
+          "address_line",
+          "postal_code",
+          "label",
+          "is_default"
+        ],
+        "title": "AddressOut",
+        "type": "object"
+      },
+      "AddressIn": {
+        "properties": {
+          "full_name": {
+            "title": "Full Name",
+            "type": "string"
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "address_line": {
+            "title": "Address Line",
+            "type": "string"
+          },
+          "province": {
+            "default": "",
+            "title": "Province",
+            "type": "string"
+          },
+          "city": {
+            "default": "",
+            "title": "City",
+            "type": "string"
+          },
+          "postal_code": {
+            "default": "",
+            "title": "Postal Code",
+            "type": "string"
+          },
+          "label": {
+            "default": "",
+            "title": "Label",
+            "type": "string"
+          },
+          "is_default": {
+            "default": false,
+            "title": "Is Default",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "full_name",
+          "phone",
+          "address_line"
+        ],
+        "title": "AddressIn",
+        "type": "object"
+      },
+      "AddressPatchIn": {
+        "properties": {
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          },
+          "address_line": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Line"
+          },
+          "province": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Province"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "postal_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Postal Code"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "is_default": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Default"
+          }
+        },
+        "title": "AddressPatchIn",
+        "type": "object"
+      },
+      "ProductListItem": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "brand": {
+            "title": "Brand",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "min_price_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Price Amount"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "audience": {
+            "default": "unisex",
+            "title": "Audience",
+            "type": "string"
+          },
+          "category_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Slug"
+          },
+          "colors": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Colors",
+            "type": "array"
+          },
+          "sizes": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Sizes",
+            "type": "array"
+          },
+          "in_stock": {
+            "default": true,
+            "title": "In Stock",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "brand"
+        ],
+        "title": "ProductListItem",
+        "type": "object"
+      },
+      "WishlistAddIn": {
+        "properties": {
+          "product_id": {
+            "title": "Product Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "product_id"
+        ],
+        "title": "WishlistAddIn",
+        "type": "object"
+      },
+      "ProductPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ProductListItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total",
+          "has_next"
+        ],
+        "title": "ProductPage",
+        "type": "object"
+      },
+      "CatalogFacets": {
+        "properties": {
+          "categories": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/FacetValue"
+            },
+            "title": "Categories",
+            "type": "array"
+          },
+          "collections": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/FacetValue"
+            },
+            "title": "Collections",
+            "type": "array"
+          },
+          "sizes": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/FacetValue"
+            },
+            "title": "Sizes",
+            "type": "array"
+          },
+          "colors": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/FacetValue"
+            },
+            "title": "Colors",
+            "type": "array"
+          },
+          "price_min": {
+            "default": 0,
+            "title": "Price Min",
+            "type": "integer"
+          },
+          "price_max": {
+            "default": 0,
+            "title": "Price Max",
+            "type": "integer"
+          }
+        },
+        "title": "CatalogFacets",
+        "type": "object"
+      },
+      "FacetValue": {
+        "properties": {
+          "value": {
+            "title": "Value",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "count": {
+            "default": 0,
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value",
+          "label"
+        ],
+        "title": "FacetValue",
+        "type": "object"
+      },
+      "CategoryOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "product_count": {
+            "default": 0,
+            "title": "Product Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug"
+        ],
+        "title": "CategoryOut",
+        "type": "object"
+      },
+      "ProductDetail": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "brand": {
+            "title": "Brand",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "audience": {
+            "default": "unisex",
+            "title": "Audience",
+            "type": "string"
+          },
+          "material": {
+            "default": "",
+            "title": "Material",
+            "type": "string"
+          },
+          "care": {
+            "default": "",
+            "title": "Care",
+            "type": "string"
+          },
+          "category_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Slug"
+          },
+          "category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Name"
+          },
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/VariantOut"
+            },
+            "title": "Variants",
+            "type": "array"
+          },
+          "images": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductImageOut"
+            },
+            "title": "Images",
+            "type": "array"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "min_price_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Price Amount"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "in_stock": {
+            "default": true,
+            "title": "In Stock",
+            "type": "boolean"
+          },
+          "collections": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Collections",
+            "type": "array"
+          },
+          "related": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductListItem"
+            },
+            "title": "Related",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "brand",
+          "description",
+          "variants"
+        ],
+        "title": "ProductDetail",
+        "type": "object"
+      },
+      "ProductImageOut": {
+        "properties": {
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "alt": {
+            "default": "",
+            "title": "Alt",
+            "type": "string"
+          },
+          "color": {
+            "default": "",
+            "title": "Color",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "ProductImageOut",
+        "type": "object"
+      },
+      "VariantOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string"
+          },
+          "price_amount": {
+            "title": "Price Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "quantity_available": {
+            "title": "Quantity Available",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "sku",
+          "size",
+          "color",
+          "price_amount",
+          "currency",
+          "is_active",
+          "quantity_available"
+        ],
+        "title": "VariantOut",
+        "type": "object"
+      },
+      "CollectionListItem": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "product_count": {
+            "default": 0,
+            "title": "Product Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug"
+        ],
+        "title": "CollectionListItem",
+        "type": "object"
+      },
+      "CollectionDetail": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/ProductListItem"
+            },
+            "title": "Products",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "description",
+          "products"
+        ],
+        "title": "CollectionDetail",
+        "type": "object"
+      },
+      "CartLineOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "variant_id": {
+            "title": "Variant Id",
+            "type": "string"
+          },
+          "product_id": {
+            "title": "Product Id",
+            "type": "string"
+          },
+          "product_name": {
+            "title": "Product Name",
+            "type": "string"
+          },
+          "product_slug": {
+            "title": "Product Slug",
+            "type": "string"
+          },
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "integer"
+          },
+          "unit_price_amount": {
+            "title": "Unit Price Amount",
+            "type": "integer"
+          },
+          "line_total_amount": {
+            "title": "Line Total Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "quantity_available": {
+            "default": 0,
+            "title": "Quantity Available",
+            "type": "integer"
+          },
+          "is_available": {
+            "default": true,
+            "title": "Is Available",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "variant_id",
+          "product_id",
+          "product_name",
+          "product_slug",
+          "sku",
+          "size",
+          "color",
+          "quantity",
+          "unit_price_amount",
+          "line_total_amount",
+          "currency"
+        ],
+        "title": "CartLineOut",
+        "type": "object"
+      },
+      "CartOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "cart_key": {
+            "title": "Cart Key",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/CartLineOut"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "subtotal_amount": {
+            "title": "Subtotal Amount",
+            "type": "integer"
+          },
+          "item_count": {
+            "title": "Item Count",
+            "type": "integer"
+          },
+          "has_unavailable_lines": {
+            "default": false,
+            "title": "Has Unavailable Lines",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "cart_key",
+          "currency",
+          "lines",
+          "subtotal_amount",
+          "item_count"
+        ],
+        "title": "CartOut",
+        "type": "object"
+      },
+      "AddCartLineIn": {
+        "properties": {
+          "variant_id": {
+            "title": "Variant Id",
+            "type": "string"
+          },
+          "quantity": {
+            "default": 1,
+            "title": "Quantity",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "variant_id"
+        ],
+        "title": "AddCartLineIn",
+        "type": "object"
+      },
+      "UpdateCartLineIn": {
+        "properties": {
+          "quantity": {
+            "title": "Quantity",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "quantity"
+        ],
+        "title": "UpdateCartLineIn",
+        "type": "object"
+      },
+      "OrderAddressOut": {
+        "properties": {
+          "full_name": {
+            "default": "",
+            "title": "Full Name",
+            "type": "string"
+          },
+          "phone": {
+            "default": "",
+            "title": "Phone",
+            "type": "string"
+          },
+          "province": {
+            "default": "",
+            "title": "Province",
+            "type": "string"
+          },
+          "city": {
+            "default": "",
+            "title": "City",
+            "type": "string"
+          },
+          "address_line": {
+            "default": "",
+            "title": "Address Line",
+            "type": "string"
+          },
+          "postal_code": {
+            "default": "",
+            "title": "Postal Code",
+            "type": "string"
+          }
+        },
+        "title": "OrderAddressOut",
+        "type": "object"
+      },
+      "OrderEventOut": {
+        "properties": {
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "created_at"
+        ],
+        "title": "OrderEventOut",
+        "type": "object"
+      },
+      "OrderLineOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "product_name": {
+            "title": "Product Name",
+            "type": "string"
+          },
+          "product_slug": {
+            "default": "",
+            "title": "Product Slug",
+            "type": "string"
+          },
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "size": {
+            "default": "",
+            "title": "Size",
+            "type": "string"
+          },
+          "color": {
+            "default": "",
+            "title": "Color",
+            "type": "string"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "integer"
+          },
+          "unit_price_amount": {
+            "title": "Unit Price Amount",
+            "type": "integer"
+          },
+          "line_total_amount": {
+            "title": "Line Total Amount",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "product_name",
+          "sku",
+          "quantity",
+          "unit_price_amount",
+          "line_total_amount"
+        ],
+        "title": "OrderLineOut",
+        "type": "object"
+      },
+      "OrderOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "subtotal_amount": {
+            "title": "Subtotal Amount",
+            "type": "integer"
+          },
+          "shipping_amount": {
+            "title": "Shipping Amount",
+            "type": "integer"
+          },
+          "discount_amount": {
+            "title": "Discount Amount",
+            "type": "integer"
+          },
+          "total_amount": {
+            "title": "Total Amount",
+            "type": "integer"
+          },
+          "shipping_method_title": {
+            "default": "",
+            "title": "Shipping Method Title",
+            "type": "string"
+          },
+          "contact_name": {
+            "default": "",
+            "title": "Contact Name",
+            "type": "string"
+          },
+          "contact_phone": {
+            "default": "",
+            "title": "Contact Phone",
+            "type": "string"
+          },
+          "customer_note": {
+            "default": "",
+            "title": "Customer Note",
+            "type": "string"
+          },
+          "shipping_address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrderAddressOut"
+              }
+            ],
+            "default": {
+              "full_name": "",
+              "phone": "",
+              "province": "",
+              "city": "",
+              "address_line": "",
+              "postal_code": ""
+            }
+          },
+          "lines": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/OrderLineOut"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "events": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/OrderEventOut"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "item_count": {
+            "default": 0,
+            "title": "Item Count",
+            "type": "integer"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "paid_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Paid At"
+          },
+          "payment_status": {
+            "default": "",
+            "title": "Payment Status",
+            "type": "string"
+          },
+          "payment_intent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Intent Id"
+          },
+          "can_cancel": {
+            "default": false,
+            "title": "Can Cancel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "reference",
+          "status",
+          "currency",
+          "subtotal_amount",
+          "shipping_amount",
+          "discount_amount",
+          "total_amount"
+        ],
+        "title": "OrderOut",
+        "type": "object"
+      },
+      "CheckoutOut": {
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/OrderOut"
+          },
+          "payment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PaymentOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "order_token": {
+            "title": "Order Token",
+            "type": "string"
+          },
+          "redirect_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Redirect Url"
+          }
+        },
+        "required": [
+          "order",
+          "order_token"
+        ],
+        "title": "CheckoutOut",
+        "type": "object"
+      },
+      "PaymentOut": {
+        "properties": {
+          "intent_id": {
+            "title": "Intent Id",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "amount": {
+            "title": "Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "redirect_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Redirect Url"
+          },
+          "supports_manual_completion": {
+            "default": false,
+            "title": "Supports Manual Completion",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "intent_id",
+          "provider",
+          "status",
+          "amount",
+          "currency"
+        ],
+        "title": "PaymentOut",
+        "type": "object"
+      },
+      "CheckoutAddressIn": {
+        "properties": {
+          "full_name": {
+            "title": "Full Name",
+            "type": "string"
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "address_line": {
+            "title": "Address Line",
+            "type": "string"
+          },
+          "province": {
+            "default": "",
+            "title": "Province",
+            "type": "string"
+          },
+          "city": {
+            "default": "",
+            "title": "City",
+            "type": "string"
+          },
+          "postal_code": {
+            "default": "",
+            "title": "Postal Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "full_name",
+          "phone",
+          "address_line"
+        ],
+        "title": "CheckoutAddressIn",
+        "type": "object"
+      },
+      "CheckoutIn": {
+        "properties": {
+          "shipping_method_code": {
+            "title": "Shipping Method Code",
+            "type": "string"
+          },
+          "address_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Id"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CheckoutAddressIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "save_address": {
+            "default": false,
+            "title": "Save Address",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "shipping_method_code"
+        ],
+        "title": "CheckoutIn",
+        "type": "object"
+      },
+      "SandboxCompleteIn": {
+        "properties": {
+          "succeeded": {
+            "default": true,
+            "title": "Succeeded",
+            "type": "boolean"
+          }
+        },
+        "title": "SandboxCompleteIn",
+        "type": "object"
+      },
+      "ShippingMethodOut": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "price_amount": {
+            "title": "Price Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "eta_days": {
+            "default": 0,
+            "title": "Eta Days",
+            "type": "integer"
+          },
+          "free_over_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Free Over Amount"
+          }
+        },
+        "required": [
+          "code",
+          "title",
+          "price_amount"
+        ],
+        "title": "ShippingMethodOut",
+        "type": "object"
+      },
+      "HeroBannerOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "subtitle": {
+            "title": "Subtitle",
+            "type": "string"
+          },
+          "cta_label": {
+            "title": "Cta Label",
+            "type": "string"
+          },
+          "cta_href": {
+            "title": "Cta Href",
+            "type": "string"
+          },
+          "image_url": {
+            "title": "Image Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "subtitle",
+          "cta_label",
+          "cta_href",
+          "image_url"
+        ],
+        "title": "HeroBannerOut",
+        "type": "object"
+      },
+      "StaffLoginOut": {
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/StaffUserOut"
+          }
+        },
+        "required": [
+          "token",
+          "user"
+        ],
+        "title": "StaffLoginOut",
+        "type": "object"
+      },
+      "StaffUserOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "is_staff": {
+            "title": "Is Staff",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "display_name",
+          "is_staff"
+        ],
+        "title": "StaffUserOut",
+        "type": "object"
+      },
+      "StaffLoginIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "StaffLoginIn",
+        "type": "object"
+      },
+      "DashboardStatsOut": {
+        "properties": {
+          "orders_today": {
+            "title": "Orders Today",
+            "type": "integer"
+          },
+          "orders_total": {
+            "title": "Orders Total",
+            "type": "integer"
+          },
+          "sales_today_amount": {
+            "title": "Sales Today Amount",
+            "type": "integer"
+          },
+          "sales_total_amount": {
+            "title": "Sales Total Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "low_stock_count": {
+            "title": "Low Stock Count",
+            "type": "integer"
+          },
+          "products_published": {
+            "title": "Products Published",
+            "type": "integer"
+          },
+          "products_total": {
+            "title": "Products Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "orders_today",
+          "orders_total",
+          "sales_today_amount",
+          "sales_total_amount",
+          "low_stock_count",
+          "products_published",
+          "products_total"
+        ],
+        "title": "DashboardStatsOut",
+        "type": "object"
+      },
+      "StoreSettingsOut": {
+        "properties": {
+          "store_name": {
+            "title": "Store Name",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "low_stock_threshold": {
+            "title": "Low Stock Threshold",
+            "type": "integer"
+          },
+          "payment_provider": {
+            "title": "Payment Provider",
+            "type": "string"
+          },
+          "shipping_default_code": {
+            "title": "Shipping Default Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "store_name",
+          "currency",
+          "low_stock_threshold",
+          "payment_provider",
+          "shipping_default_code"
+        ],
+        "title": "StoreSettingsOut",
+        "type": "object"
+      },
+      "StoreSettingsIn": {
+        "properties": {
+          "store_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Store Name"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "low_stock_threshold": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Low Stock Threshold"
+          },
+          "payment_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Provider"
+          },
+          "shipping_default_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shipping Default Code"
+          }
+        },
+        "title": "StoreSettingsIn",
+        "type": "object"
+      },
+      "ContentPageOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "is_published": {
+            "title": "Is Published",
+            "type": "boolean"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "body",
+          "is_published"
+        ],
+        "title": "ContentPageOut",
+        "type": "object"
+      },
+      "ContentPageUpdateIn": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "is_published": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Published"
+          }
+        },
+        "title": "ContentPageUpdateIn",
+        "type": "object"
+      },
+      "AdminProductListItem": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "brand": {
+            "title": "Brand",
+            "type": "string"
+          },
+          "is_published": {
+            "title": "Is Published",
+            "type": "boolean"
+          },
+          "category_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Id"
+          },
+          "category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Name"
+          },
+          "variant_count": {
+            "default": 0,
+            "title": "Variant Count",
+            "type": "integer"
+          },
+          "min_price_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Price Amount"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "brand",
+          "is_published"
+        ],
+        "title": "AdminProductListItem",
+        "type": "object"
+      },
+      "AdminProductDetail": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "brand": {
+            "title": "Brand",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "is_published": {
+            "title": "Is Published",
+            "type": "boolean"
+          },
+          "category_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Id"
+          },
+          "collection_ids": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Collection Ids",
+            "type": "array"
+          },
+          "variants": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/AdminVariantOut"
+            },
+            "title": "Variants",
+            "type": "array"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "brand",
+          "description",
+          "is_published"
+        ],
+        "title": "AdminProductDetail",
+        "type": "object"
+      },
+      "AdminVariantOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string"
+          },
+          "price_amount": {
+            "title": "Price Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "quantity_on_hand": {
+            "title": "Quantity On Hand",
+            "type": "integer"
+          },
+          "quantity_reserved": {
+            "title": "Quantity Reserved",
+            "type": "integer"
+          },
+          "quantity_available": {
+            "title": "Quantity Available",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "sku",
+          "size",
+          "color",
+          "price_amount",
+          "currency",
+          "is_active",
+          "quantity_on_hand",
+          "quantity_reserved",
+          "quantity_available"
+        ],
+        "title": "AdminVariantOut",
+        "type": "object"
+      },
+      "AdminProductCreateIn": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "brand": {
+            "default": "orf",
+            "title": "Brand",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "is_published": {
+            "default": false,
+            "title": "Is Published",
+            "type": "boolean"
+          },
+          "category_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Id"
+          },
+          "collection_ids": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Collection Ids",
+            "type": "array"
+          },
+          "variants": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/AdminVariantIn"
+            },
+            "title": "Variants",
+            "type": "array"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "title": "AdminProductCreateIn",
+        "type": "object"
+      },
+      "AdminVariantIn": {
+        "properties": {
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "size": {
+            "default": "",
+            "title": "Size",
+            "type": "string"
+          },
+          "color": {
+            "default": "",
+            "title": "Color",
+            "type": "string"
+          },
+          "price_amount": {
+            "title": "Price Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "is_active": {
+            "default": true,
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "quantity_on_hand": {
+            "default": 0,
+            "title": "Quantity On Hand",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sku",
+          "price_amount"
+        ],
+        "title": "AdminVariantIn",
+        "type": "object"
+      },
+      "AdminProductUpdateIn": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Slug"
+          },
+          "brand": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "is_published": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Published"
+          },
+          "category_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Id"
+          },
+          "collection_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Collection Ids"
+          }
+        },
+        "title": "AdminProductUpdateIn",
+        "type": "object"
+      },
+      "AdminVariantUpdateIn": {
+        "properties": {
+          "sku": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sku"
+          },
+          "size": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Size"
+          },
+          "color": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color"
+          },
+          "price_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Amount"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active"
+          }
+        },
+        "title": "AdminVariantUpdateIn",
+        "type": "object"
+      },
+      "AdminCategoryOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug"
+        ],
+        "title": "AdminCategoryOut",
+        "type": "object"
+      },
+      "AdminCategoryIn": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "title": "AdminCategoryIn",
+        "type": "object"
+      },
+      "AdminCollectionOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "is_published": {
+            "default": false,
+            "title": "Is Published",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug"
+        ],
+        "title": "AdminCollectionOut",
+        "type": "object"
+      },
+      "AdminCollectionIn": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "is_published": {
+            "default": false,
+            "title": "Is Published",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ],
+        "title": "AdminCollectionIn",
+        "type": "object"
+      },
+      "AdminStockItemOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "variant_id": {
+            "title": "Variant Id",
+            "type": "string"
+          },
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "product_name": {
+            "title": "Product Name",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string"
+          },
+          "quantity_on_hand": {
+            "title": "Quantity On Hand",
+            "type": "integer"
+          },
+          "quantity_reserved": {
+            "title": "Quantity Reserved",
+            "type": "integer"
+          },
+          "quantity_available": {
+            "title": "Quantity Available",
+            "type": "integer"
+          },
+          "is_low": {
+            "default": false,
+            "title": "Is Low",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "variant_id",
+          "sku",
+          "product_name",
+          "size",
+          "color",
+          "quantity_on_hand",
+          "quantity_reserved",
+          "quantity_available"
+        ],
+        "title": "AdminStockItemOut",
+        "type": "object"
+      },
+      "AdminStockAdjustIn": {
+        "properties": {
+          "delta": {
+            "title": "Delta",
+            "type": "integer"
+          },
+          "reason": {
+            "default": "",
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "delta"
+        ],
+        "title": "AdminStockAdjustIn",
+        "type": "object"
+      },
+      "AdminOrderListItem": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "total_amount": {
+            "title": "Total Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "customer_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Customer Email"
+          },
+          "customer_phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Customer Phone"
+          },
+          "line_count": {
+            "default": 0,
+            "title": "Line Count",
+            "type": "integer"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "total_amount",
+          "currency"
+        ],
+        "title": "AdminOrderListItem",
+        "type": "object"
+      },
+      "AdminOrderDetail": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "total_amount": {
+            "title": "Total Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "customer_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Customer Email"
+          },
+          "customer_phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Customer Phone"
+          },
+          "staff_notes": {
+            "default": "",
+            "title": "Staff Notes",
+            "type": "string"
+          },
+          "lines": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/AdminOrderLineOut"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "total_amount",
+          "currency"
+        ],
+        "title": "AdminOrderDetail",
+        "type": "object"
+      },
+      "AdminOrderLineOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "product_name": {
+            "title": "Product Name",
+            "type": "string"
+          },
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "integer"
+          },
+          "unit_price_amount": {
+            "title": "Unit Price Amount",
+            "type": "integer"
+          },
+          "line_total_amount": {
+            "title": "Line Total Amount",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "product_name",
+          "sku",
+          "quantity",
+          "unit_price_amount",
+          "line_total_amount"
+        ],
+        "title": "AdminOrderLineOut",
+        "type": "object"
+      },
+      "AdminOrderStatusIn": {
+        "properties": {
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "staff_notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Staff Notes"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "AdminOrderStatusIn",
+        "type": "object"
+      },
+      "AdminPaymentOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "order_id": {
+            "title": "Order Id",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_ref": {
+            "title": "Provider Ref",
+            "type": "string"
+          },
+          "amount": {
+            "title": "Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "required": [
+          "id",
+          "order_id",
+          "provider",
+          "provider_ref",
+          "amount",
+          "currency",
+          "status"
+        ],
+        "title": "AdminPaymentOut",
+        "type": "object"
+      },
+      "AdminCustomerOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "order_count": {
+            "default": 0,
+            "title": "Order Count",
+            "type": "integer"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "username",
+          "phone",
+          "is_active"
+        ],
+        "title": "AdminCustomerOut",
+        "type": "object"
+      },
+      "AdminBannerOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "subtitle": {
+            "title": "Subtitle",
+            "type": "string"
+          },
+          "cta_label": {
+            "title": "Cta Label",
+            "type": "string"
+          },
+          "cta_href": {
+            "title": "Cta Href",
+            "type": "string"
+          },
+          "image_url": {
+            "title": "Image Url",
+            "type": "string"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "sort_order": {
+            "title": "Sort Order",
+            "type": "integer"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "subtitle",
+          "cta_label",
+          "cta_href",
+          "image_url",
+          "is_active",
+          "sort_order"
+        ],
+        "title": "AdminBannerOut",
+        "type": "object"
+      },
+      "AdminBannerIn": {
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "subtitle": {
+            "default": "",
+            "title": "Subtitle",
+            "type": "string"
+          },
+          "cta_label": {
+            "default": "",
+            "title": "Cta Label",
+            "type": "string"
+          },
+          "cta_href": {
+            "default": "",
+            "title": "Cta Href",
+            "type": "string"
+          },
+          "image_url": {
+            "default": "",
+            "title": "Image Url",
+            "type": "string"
+          },
+          "is_active": {
+            "default": false,
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "sort_order": {
+            "default": 0,
+            "title": "Sort Order",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "AdminBannerIn",
+        "type": "object"
+      },
+      "AdminBannerUpdateIn": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "cta_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cta Label"
+          },
+          "cta_href": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cta Href"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active"
+          },
+          "sort_order": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sort Order"
+          }
+        },
+        "title": "AdminBannerUpdateIn",
+        "type": "object"
+      },
+      "AdminShippingMethodOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "price_amount": {
+            "title": "Price Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "title",
+          "price_amount",
+          "currency",
+          "is_active"
+        ],
+        "title": "AdminShippingMethodOut",
+        "type": "object"
+      },
+      "AdminShippingMethodIn": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "price_amount": {
+            "default": 0,
+            "title": "Price Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "default": "IRR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "is_active": {
+            "default": true,
+            "title": "Is Active",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "title"
+        ],
+        "title": "AdminShippingMethodIn",
+        "type": "object"
+      },
+      "AdminShippingMethodUpdateIn": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "price_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Amount"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active"
+          }
+        },
+        "title": "AdminShippingMethodUpdateIn",
+        "type": "object"
+      },
+      "AdminMediaOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          },
+          "alt_text": {
+            "default": "",
+            "title": "Alt Text",
+            "type": "string"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "url",
+          "content_type"
+        ],
+        "title": "AdminMediaOut",
+        "type": "object"
+      },
+      "AdminMediaUploadIn": {
+        "description": "Stub upload: client provides URL/metadata; real storage later.",
+        "properties": {
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Key"
+          },
+          "content_type": {
+            "default": "image/jpeg",
+            "title": "Content Type",
+            "type": "string"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          },
+          "alt_text": {
+            "default": "",
+            "title": "Alt Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "AdminMediaUploadIn",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "CustomerBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "StaffBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": []
 }

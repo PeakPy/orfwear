@@ -21,3 +21,17 @@ class PaymentIntent(UUIDPrimaryKeyModel, TimeStampedModel):
     status = models.CharField(max_length=32, choices=Status.choices, default=Status.REQUIRES_ACTION)
     idempotency_key = models.CharField(max_length=128, unique=True)
     raw_response = models.JSONField(default=dict, blank=True)
+    redirect_url = models.URLField(max_length=500, blank=True)
+    failure_code = models.CharField(max_length=64, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    correlation_id = models.CharField(max_length=64, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["provider", "provider_ref"])]
+
+    TERMINAL_STATUSES = (Status.SUCCEEDED, Status.FAILED, Status.CANCELLED)
+
+    @property
+    def is_open(self) -> bool:
+        return self.status not in self.TERMINAL_STATUSES

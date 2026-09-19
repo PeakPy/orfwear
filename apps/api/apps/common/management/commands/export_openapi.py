@@ -19,5 +19,7 @@ class Command(BaseCommand):
         out_dir = repo_root / "packages" / "contracts" / "openapi"
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / "orfwear-v1.json"
-        out_file.write_text(json.dumps(schema, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        out_file.write_text(
+            json.dumps(schema, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        )
         self.stdout.write(self.style.SUCCESS(f"Wrote {out_file}"))
