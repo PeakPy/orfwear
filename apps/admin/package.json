@@ -1,0 +1,38 @@
+{
+  "name": "@orfwear/admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
+    "test": "echo \"No admin tests yet\" && exit 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@orfwear/design-tokens": "file:../../packages/design-tokens",
+    "@tanstack/react-query": "^5.66.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.46.0",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.88.0",
+    "tailwind-merge": "^3.0.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.6",
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "eslint": "^9.20.0",
+    "eslint-config-next": "^15.1.6",
+    "prettier": "^3.5.0",
+    "tailwindcss": "^4.0.6",
+    "typescript": "^5.7.3"
+  }
+}

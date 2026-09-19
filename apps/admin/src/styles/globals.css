@@ -1,0 +1,182 @@
+@import "./tokens.css";
+@import "tailwindcss";
+
+@theme inline {
+  --color-orf-bg: var(--orf-bg);
+  --color-orf-bg-elevated: var(--orf-bg-elevated);
+  --color-orf-bg-subtle: var(--orf-bg-subtle);
+  --color-orf-frame: var(--orf-frame);
+  --color-orf-fg: var(--orf-fg);
+  --color-orf-muted: var(--orf-muted);
+  --color-orf-border: var(--orf-border);
+  --color-orf-border-strong: var(--orf-border-strong);
+  --color-orf-accent: var(--orf-accent);
+  --color-orf-accent-strong: var(--orf-accent-strong);
+  --color-orf-pastel: var(--orf-pastel);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --spacing-sidebar: var(--orf-sidebar-width);
+  --spacing-header: var(--orf-header-height);
+  --radius-orf-sm: var(--orf-radius-sm);
+  --radius-orf-md: var(--orf-radius-md);
+  --radius-orf-lg: var(--orf-radius-lg);
+  --radius-orf-xl: var(--orf-radius-xl);
+  --radius-orf-2xl: var(--orf-radius-2xl);
+  --radius-orf-pill: var(--orf-radius-pill);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--orf-fg);
+  background:
+    radial-gradient(90% 60% at 100% 0%, rgb(255 255 255 / 0.85), transparent 50%),
+    var(--orf-bg);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--orf-fg);
+  outline-offset: 2px;
+}
+
+.glass-surface {
+  background: var(--orf-glass);
+  border: 1px solid var(--orf-glass-border);
+  backdrop-filter: blur(var(--orf-glass-blur)) saturate(var(--orf-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--orf-glass-blur)) saturate(var(--orf-glass-saturate));
+  box-shadow: inset 0 1px 0 var(--orf-glass-highlight), var(--orf-shadow-sm);
+}
+
+.glass-surface-strong {
+  background: var(--orf-glass-strong);
+  border: 1px solid var(--orf-glass-border);
+  backdrop-filter: blur(var(--orf-glass-blur-strong)) saturate(var(--orf-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--orf-glass-blur-strong)) saturate(var(--orf-glass-saturate));
+  box-shadow: inset 0 1px 0 var(--orf-glass-highlight), var(--orf-shadow-md);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--orf-touch);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--orf-radius-pill);
+  background: var(--orf-fg);
+  color: var(--orf-bg-elevated);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: var(--orf-shadow-sm);
+  transition: opacity var(--orf-duration) var(--orf-ease);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--orf-touch);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--orf-radius-pill);
+  border: 1px solid var(--orf-border);
+  background: var(--orf-bg-elevated);
+  color: var(--orf-fg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: var(--orf-shadow-sm);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--orf-touch);
+  height: var(--orf-touch);
+  min-width: var(--orf-touch);
+  min-height: var(--orf-touch);
+  border-radius: var(--orf-radius-pill);
+  border: 1px solid var(--orf-glass-border);
+  background: var(--orf-glass-strong);
+  backdrop-filter: blur(12px) saturate(var(--orf-glass-saturate));
+  -webkit-backdrop-filter: blur(12px) saturate(var(--orf-glass-saturate));
+  box-shadow: inset 0 1px 0 var(--orf-glass-highlight), var(--orf-shadow-sm);
+  color: var(--orf-fg);
+}
+
+.skeleton {
+  border-radius: var(--orf-radius-md);
+  background: linear-gradient(
+    90deg,
+    var(--orf-bg-subtle) 0%,
+    rgb(255 255 255 / 0.7) 50%,
+    var(--orf-bg-subtle) 100%
+  );
+  background-size: 200% 100%;
+  animation: orf-shimmer 1.4s var(--orf-ease) infinite;
+}
+
+@keyframes orf-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .glass-surface,
+  .glass-surface-strong,
+  .btn-icon {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .skeleton {
+    animation: none;
+    background: var(--orf-bg-subtle);
+  }
+}
