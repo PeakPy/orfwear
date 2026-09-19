@@ -3,5 +3,5 @@ export const siteConfig = {
   name: process.env.NEXT_PUBLIC_SITE_NAME ?? "ORF Wear",
   description: "فروشگاه لباس و پوشیدنی ORF",
   url: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-  apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000/api/v1",
+  apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8001/api/v1",
 };

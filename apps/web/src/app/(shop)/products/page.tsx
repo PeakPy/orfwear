@@ -1,30 +1,21 @@
-import { listProducts } from "@/features/catalog/api";
+import type { Metadata } from "next";
+import { Suspense } from "react";
 
-export default async function ProductsPage() {
-  let products: Awaited<ReturnType<typeof listProducts>> = [];
-  let error: string | null = null;
+import { ProductGridSkeleton } from "@/components/ui/skeleton";
+import { ProductBrowser } from "@/features/catalog/product-browser";
 
-  try {
-    products = await listProducts();
-  } catch {
-    error = "اتصال به API برقرار نشد. سرویس بکند را بالا بیاورید.";
-  }
+export const metadata: Metadata = {
+  title: "محصولات",
+  description: "همهٔ محصولات ORF Wear با فیلتر دسته، سایز، رنگ و قیمت.",
+};
 
+export default function ProductsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
-      <h1 className="mb-8 text-3xl" style={{ fontFamily: "var(--font-display)" }}>
-        محصولات
-      </h1>
-      {error ? <p className="text-orf-muted">{error}</p> : null}
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
-          <li key={product.id} className="glass-surface rounded-3xl p-6">
-            <p className="text-xs tracking-[0.25em] text-orf-accent uppercase">{product.brand}</p>
-            <h2 className="mt-3 text-xl">{product.name}</h2>
-            <p className="mt-2 text-sm text-orf-muted">{product.slug}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="px-4 pt-2 pb-8">
+      <h1 className="sr-only">همهٔ محصولات</h1>
+      <Suspense fallback={<ProductGridSkeleton />}>
+        <ProductBrowser />
+      </Suspense>
     </div>
   );
 }

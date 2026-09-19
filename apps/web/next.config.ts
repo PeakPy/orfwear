@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ["motion"],
+    optimizePackageImports: ["motion", "lucide-react"],
   },
 };
 

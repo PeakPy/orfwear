@@ -12,12 +12,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@orfwear/design-tokens": "file:../../packages/design-tokens",
     "@tanstack/react-query": "^5.66.0",
     "clsx": "^2.1.1",
+    "lucide-react": "^1.46.0",
     "motion": "^12.4.0",
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.88.0",
     "tailwind-merge": "^3.0.1",
     "zod": "^3.24.1",
     "zustand": "^5.0.3"
