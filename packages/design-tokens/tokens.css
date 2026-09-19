@@ -1,0 +1,77 @@
+
+/**
+ * ORF Wear shared design tokens
+ * Liquid Glass / iOS HIG fashion: monochrome off-white base, frosted chrome,
+ * large radii & pills. Glass is for chrome (header, dock, sheets, search,
+ * key cards) — product photography stays opaque and hero-first.
+ */
+
+:root {
+  /* Surfaces — soft off-white studio */
+  --orf-bg: #f5f5f3;
+  --orf-bg-elevated: #ffffff;
+  --orf-bg-subtle: #ebebe8;
+  --orf-frame: #1c1c1a;
+  --orf-fg: #111110;
+  --orf-muted: #6b6b66;
+  --orf-border: rgb(17 17 16 / 0.1);
+  --orf-border-strong: rgb(17 17 16 / 0.18);
+
+  /* Accent — soft pewter; pastel only sparingly */
+  --orf-accent: #8a8680;
+  --orf-accent-strong: #6e6a64;
+  --orf-pastel: #d8e0d6;
+
+  /* Status */
+  --orf-danger: #9c3025;
+  --orf-success: #4a6b4f;
+
+  /* Chrome glass (header / dock / sheets / search / key cards) */
+  --orf-glass: rgb(255 255 255 / 0.62);
+  --orf-glass-strong: rgb(255 255 255 / 0.78);
+  --orf-glass-dark: rgb(28 28 26 / 0.72);
+  --orf-glass-border: rgb(255 255 255 / 0.45);
+  --orf-glass-border-dark: rgb(255 255 255 / 0.14);
+  --orf-glass-highlight: rgb(255 255 255 / 0.7);
+  --orf-glass-blur: 20px;
+  --orf-glass-blur-strong: 28px;
+  --orf-glass-saturate: 160%;
+
+  /* Soft depth */
+  --orf-shadow-sm: 0 1px 2px rgb(17 17 16 / 0.04), 0 4px 12px rgb(17 17 16 / 0.04);
+  --orf-shadow-md: 0 4px 16px rgb(17 17 16 / 0.06), 0 1px 3px rgb(17 17 16 / 0.04);
+  --orf-shadow-lg: 0 12px 40px rgb(17 17 16 / 0.1), 0 2px 8px rgb(17 17 16 / 0.04);
+  --orf-shadow-dock: 0 8px 32px rgb(17 17 16 / 0.14), 0 2px 8px rgb(17 17 16 / 0.06);
+
+  /* Layout */
+  --orf-shell-max: 430px;
+  --orf-safe-top: env(safe-area-inset-top, 0px);
+  --orf-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --orf-nav-height: 4.25rem;
+  --orf-header-height: 3.5rem;
+  --orf-sidebar-width: 16rem;
+  --orf-touch: 2.75rem; /* 44px */
+  --orf-space-xs: 0.25rem;
+  --orf-space-sm: 0.5rem;
+  --orf-space-md: 1rem;
+  --orf-space-lg: 1.5rem;
+  --orf-space-xl: 2rem;
+  --orf-space-2xl: 2.75rem;
+
+  /* iOS-like radii */
+  --orf-radius-sm: 0.75rem; /* 12 */
+  --orf-radius-md: 1.25rem; /* 20 */
+  --orf-radius-lg: 1.75rem; /* 28 */
+  --orf-radius-xl: 2rem; /* 32 */
+  --orf-radius-2xl: 2.5rem; /* 40 */
+  --orf-radius-pill: 9999px;
+
+  /* Type — Vazirmatn until IRANYekanX */
+  --font-sans: "Vazirmatn", "Tahoma", sans-serif;
+  --font-display: var(--font-sans);
+
+  /* Motion */
+  --orf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --orf-duration: 240ms;
+  --orf-duration-slow: 420ms;
+}

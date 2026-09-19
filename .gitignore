@@ -62,6 +62,9 @@ docker-data/
 # Generated clients (regenerate from OpenAPI)
 packages/contracts/typescript/generated/
 
+# Local UI audit output (screenshots, CPU profiles)
+.audit-shots/
+
 # Misc
 *.pem
 .cache/
